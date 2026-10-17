@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kod Macerası Mini — Kodlayarak Oyna!</title>
+<style>
+:root{--bg:#e8f7ff;--card:#fff;--ink:#2b2350;--mute:#5f5a80;--p:#8b5cf6;--o:#ff8a3d;--g:#2fc56b;--y:#ffd23f;--line:#cfe8f5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1840;--card:#2a2560;--ink:#fff;--mute:#c8c2ee;--line:#40398a}}
+:root[data-theme="dark"]{--bg:#1b1840;--card:#2a2560;--ink:#fff;--mute:#c8c2ee;--line:#40398a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.5 "Trebuchet MS",system-ui,sans-serif}
+.w{max-width:960px;margin:auto;padding:0 16px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;border-bottom:4px dashed var(--line)}
+nav .w{display:flex;align-items:center;gap:10px;padding:8px 16px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:22px}.sp{flex:1}
+.stars{background:var(--y);color:#2b2350;border-radius:99px;padding:6px 14px;font-weight:900}
+button{font:inherit;cursor:pointer;color:inherit}
+.big{background:var(--o);color:#fff;border:0;border-radius:22px;padding:14px 24px;font-weight:900;font-size:20px;box-shadow:0 6px 0 rgba(0,0,0,.22)}
+.big.g{background:var(--g)}.big.p{background:var(--p)}.big:active{transform:translateY(5px);box-shadow:none}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center;padding:26px 0}
+h1{font-size:clamp(32px,7vw,56px);line-height:1.05;margin:0 0 10px}
+h1 span{color:var(--p)}h2{font-size:30px;margin:44px 0 6px}.sub{color:var(--mute);margin:0 0 14px}
+.card{background:var(--card);border:4px solid var(--line);border-radius:28px;padding:16px}
+.wob{animation:wob 2.4s ease-in-out infinite}@keyframes wob{50%{transform:rotate(5deg) translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.wob{animation:none}}
+.worlds{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.world{border-radius:28px;padding:18px;text-align:center;border:4px solid rgba(0,0,0,.08);color:#2b2350;font-weight:800}
+.world div{font-size:64px}.world small{display:block;font-weight:600}
+.book{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+.scene{font-size:80px;text-align:center;background:var(--bg);border-radius:24px;padding:14px;min-height:150px;display:grid;place-items:center}
+.react{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.react button{font-size:30px;background:var(--bg);border:3px solid var(--line);border-radius:18px;padding:4px 14px}
+.react button.on{background:var(--y);border-color:var(--o)}
+.game{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:var(--bg);padding:8px;border-radius:20px}
+.cell{aspect-ratio:1;display:grid;place-items:center;font-size:clamp(24px,6vw,42px);background:var(--card);border-radius:12px}
+.prog{display:flex;gap:6px;flex-wrap:wrap;min-height:54px;background:var(--bg);border:3px dashed var(--line);border-radius:18px;padding:8px;margin:10px 0}
+.blk{background:var(--p);color:#fff;border:0;border-radius:14px;padding:8px 14px;font-weight:900;font-size:20px;box-shadow:0 4px 0 rgba(0,0,0,.22)}
+.pal{display:flex;gap:8px;flex-wrap:wrap}
+.say{display:flex;gap:12px;align-items:flex-start;margin-top:10px}.say .bub{background:var(--bg);border:3px solid var(--p);border-radius:20px;padding:10px 14px;flex:1}
+.flow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center}
+.step{background:var(--card);border:4px solid var(--line);border-radius:22px;padding:10px 14px;text-align:center;font-weight:800;min-width:110px}
+.step div{font-size:40px}.arr{font-size:28px;color:var(--p)}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.feat .card div{font-size:44px}
+.stk{display:flex;gap:10px;flex-wrap:wrap}.st{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;font-size:34px;background:var(--line);filter:grayscale(1);opacity:.5}.st.on{filter:none;opacity:1;background:var(--y)}
+footer{margin:44px 0 30px;text-align:center;color:var(--mute)}
+.lvs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}.lvb{width:48px;height:48px;border-radius:50%;border:3px solid var(--line);background:var(--card);font-weight:900;font-size:20px}.lvb.on{background:var(--p);color:#fff;border-color:var(--p)}
+.gm{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.mn{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.gmsg{background:var(--bg);border:3px solid var(--p);border-radius:18px;padding:8px 12px;margin-top:10px}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}.mc{aspect-ratio:1;font-size:clamp(26px,7vw,44px);background:var(--p);border:0;border-radius:18px;box-shadow:0 4px 0 rgba(0,0,0,.22)}.mc.up{background:var(--card);border:4px solid var(--y)}
+.opt{font-size:40px;background:var(--bg);border:4px solid var(--line);border-radius:20px;padding:6px 18px;margin:4px}.pseq{font-size:38px;text-align:center;letter-spacing:4px;background:var(--bg);border-radius:20px;padding:12px}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:260px;margin:10px auto}.sb{font-size:48px;aspect-ratio:1;border-radius:24px;border:4px solid var(--line);background:var(--bg)}.sb.lit{transform:scale(1.12);background:var(--y);border-color:var(--o)}
+.mom{position:fixed;left:0;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:10;display:flex;align-items:flex-end;gap:6px;transform:translateX(-120%);transition:transform .35s;pointer-events:none;max-width:min(290px,78vw)}.mom.in{transform:none}.mom .gb2{background:var(--card);border:4px solid var(--o);border-radius:20px 20px 20px 4px;padding:8px 12px;font-size:15px;line-height:1.35}
+.slp{position:fixed;left:70px;bottom:100px;z-index:11;width:64px;pointer-events:none;display:none}@keyframes fly{0%{transform:translate(0,0) rotate(0)}50%{transform:translate(42vw,-38vh) rotate(540deg)}100%{transform:translate(108vw,-8vh) rotate(1080deg)}}.slp.go{display:block;animation:fly 1.4s ease-in forwards}@media (prefers-reduced-motion:reduce){.slp.go{display:none}}
+.guide{position:fixed;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:9;display:flex;align-items:flex-end;gap:6px;max-width:min(330px,88vw)}.guide .gb{background:var(--card);border:4px solid var(--p);border-radius:20px 20px 4px 20px;padding:8px 12px;font-size:15px;line-height:1.35;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.15)}.guide .av{border:0;background:none;padding:0;width:84px;height:84px;flex:none}
+.tiles{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;min-height:70px;margin:10px 0;font-size:44px}.tile{padding:4px 10px;background:var(--bg);border-radius:16px}.tilebtn{font-size:40px;background:var(--bg);border:4px solid var(--line);border-radius:18px;padding:4px 12px}.tilebtn.sel{background:var(--y);border-color:var(--o)}.dgr{display:grid;gap:6px;margin:10px 0}.dgr button{aspect-ratio:1;font-size:clamp(22px,6vw,34px);background:var(--bg);border:3px solid var(--line);border-radius:14px}
+.slot{font-size:26px;font-weight:900;text-align:center;background:linear-gradient(135deg,#ffd23f,#ff8a3d);color:#2b2350;border-radius:24px;padding:18px 12px;min-height:110px;display:grid;place-items:center;margin:10px 0}.jk{font-size:20px;background:var(--bg);border-radius:20px;padding:14px;min-height:110px;margin:10px 0}.rbo{font-size:20px;background:var(--bg);border:3px dashed var(--p);border-radius:18px;padding:10px;min-height:56px;margin-top:10px}
+@media(max-width:700px){.hero,.book,.game{grid-template-columns:1fr}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="av" viewBox="0 0 100 100"><clipPath id="avc"><circle cx="50" cy="50" r="48"/></clipPath><circle cx="50" cy="50" r="48" fill="#ffd23f"/><g clip-path="url(#avc)"><path d="M16 100c0-24 14-31 34-31s34 7 34 31z" fill="#8b5cf6"/><rect x="38" y="80" width="24" height="13" rx="4" fill="#fff"/><text x="50" y="90" font-size="10" font-weight="900" text-anchor="middle" fill="#8b5cf6">&lt;/&gt;</text></g><rect x="44" y="64" width="12" height="10" fill="#e9b78f"/><circle cx="50" cy="47" r="24" fill="#f6c9a4"/><path d="M26 46c-3-22 13-31 26-29 14 1 24 11 22 29-6-10-14-14-24-14s-18 4-24 14z" fill="#3b2a20"/><circle cx="41" cy="50" r="3" fill="#2b2350"/><circle cx="59" cy="50" r="3" fill="#2b2350"/><path d="M40 59q10 9 20 0" stroke="#2b2350" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="35" cy="57" r="4" fill="#ff9aa2" opacity=".6"/><circle cx="65" cy="57" r="4" fill="#ff9aa2" opacity=".6"/></symbol></svg>
+<nav><div class="w"><span class="logo">🦊 Kod Macerası <span style="color:var(--p)">Mini</span></span><span class="sp"></span><button class="stars" id="stars" style="border:0" onclick="say('Yıldızlar sen oyun oynadıkça ve hikâye okudukça birikir! ⭐')">⭐ 0</button></div></nav>
+<div class="w">
+<section class="hero"><div>
+<h1>Kodlayarak <span>oyna!</span></h1>
+<p class="sub" style="font-size:20px">Tilki Kodi ile hikâye oku, oyun oyna, robota yol göster. Yanlış yaparsan sorun yok, tekrar dene! 🎈</p>
+<button class="big g" onclick="go('oyun')">▶ Oyna!</button> <button class="big p" onclick="go('hikaye')">📖 Oku</button></div>
+<svg viewBox="0 0 300 260" role="img" aria-label="Tilki ve roket"><rect x="8" y="10" width="284" height="240" rx="40" fill="#8b5cf6"/><circle cx="50" cy="50" r="5" fill="#fff"/><circle cx="250" cy="60" r="4" fill="#ffd23f"/><circle cx="235" cy="205" r="26" fill="#ffd23f"/><g class="wob" style="transform-origin:150px 150px"><use href="#av" x="70" y="55" width="160" height="160"/></g><text x="30" y="90" font-size="40">⭐</text><text x="210" y="110" font-size="46">🚀</text></svg></section>
+
+<h2>🌍 Maceranı Seç</h2><p class="sub">Dört dünya var, hepsi sihirli!</p>
+<div class="worlds"><div class="world" style="background:#ffe1a8"><div>🏝️</div>Robot Adası<small>Yön ver, robotu yürüt</small></div><div class="world" style="background:#c9f3d8"><div>🌳</div>Hikâye Ormanı<small>Dinle ve oku</small></div><div class="world" style="background:#ffd0e6"><div>🎨</div>Renk Atölyesi<small>Çiz, boya</small></div><div class="world" style="background:#d6d0ff"><div>🧩</div>Bulmaca Kalesi<small>Sırayı bul</small></div></div>
+
+<h2 id="hikaye">📖 Hikâye Ormanı</h2><p class="sub">Kod yazmayı öğrenen küçük bir tilkinin hikâyesi.</p>
+<div class="card book"><div class="scene" id="scene">🦊💻</div><div><b id="bt">Sayfa 1</b><p id="btx"></p><button class="big" onclick="next()">Sonraki ➜</button><div class="react" id="react"></div></div></div>
+
+<h2>🎮 Oyun Menüsü</h2><div class="mn"><button class="big" onclick="go('oyun')">🤖 Robot Adası</button><button class="big p" onclick="go('g2')">🧩 Desen</button><button class="big g" onclick="go('g3')">🧠 Hafıza</button><button class="big" onclick="go('g4')">🎵 Kodi Diyor</button><button class="big p" onclick="go('g5')">🤪 Saçmalar</button><button class="big g" onclick="go('g6')">🧭 Görevler</button></div>
+<h2 id="oyun">🤖 Robot Adası</h2><p class="sub">Blokları sırayla seç. Robot 🤖 yıldıza ⭐ ulaşsın!</p>
+<div class="lvs" id="lvs"></div><div class="game"><div class="card"><div class="grid" id="grid"></div></div>
+<div class="card"><b>Yol planın:</b><div class="prog" id="prog"></div>
+<div class="pal"><button class="blk" onclick="add('R')">➡️ Sağ</button><button class="blk" onclick="add('D')">⬇️ Aşağı</button><button class="blk" onclick="add('L')">⬅️ Sol</button><button class="blk" onclick="add('U')">⬆️ Yukarı</button></div><p><button class="big g" onclick="run()">▶ Başla</button> <button class="big" onclick="clr()">🧹 Sil</button></p>
+<div class="say"><div style="font-size:48px">🦊</div><div class="bub" id="kodi">Merhaba! Ben Kodi. Robotu yıldıza götürelim mi?</div></div></div></div>
+
+<h2 id="g2">🎲 Daha Fazla Oyun</h2><p class="sub">Hepsi Robot Adası gibi: dene, yanlışsa tekrar dene, yıldız kazan!</p>
+<div class="gm"><div class="card"><b>🧩 Desen Bulmaca</b><p class="sub">Sıradaki resim hangisi?</p><div class="pseq" id="pseq"></div><div style="text-align:center;margin-top:8px" id="popt"></div><div class="gmsg" id="pmsg">🦊 Deseni dikkatle izle!</div></div>
+<div class="card" id="g3"><b>🧠 Hafıza Kartları</b><p class="sub">Aynı resimleri bul.</p><div class="mem" id="mem"></div><button class="big g" onclick="memStart()">🔄 Karıştır</button><div class="gmsg" id="mmsg"></div></div>
+<div class="card" id="g4"><b>🎵 Kodi Diyor</b><p class="sub">Renk sırasını izle, sonra tekrar et.</p><div class="sg" id="simon"></div><div style="text-align:center"><button class="big p" onclick="sstart()">▶ Başla</button></div><div class="gmsg" id="smsg">🦊 Başla’ya bas!</div></div></div>
+<h2 id="g5">🤪 Saçmalardan Seçmeler Köşesi</h2><p class="sub">Dünyanın en saçma şeyleri burada! Gül, güldür, kendi saçmanı yap.</p>
+<div class="gm"><div class="card"><b>🎰 Saçma Makinesi</b><div class="slot" id="sl">Çevir’e bas, ne çıkacak?</div><div style="text-align:center"><button class="big" onclick="spin()">🎲 Çevir</button></div></div>
+<div class="card"><b>📰 Günün Saçmaları</b><div class="jk" id="jk"></div><button class="big g" onclick="lol()">😂 Güldüm</button> <button class="big p" onclick="nj()">Sonraki ➜</button></div>
+<div class="card"><b>🤖 Saçma Robot</b><p class="sub">Robota saçma işler yaptır (kod gibi, sırayla!).</p><div class="pal" id="rbb"></div><div class="rbo" id="rbl">Sıran: boş</div><p><button class="big g" onclick="rbrun()">▶ Çalıştır</button> <button class="big" onclick="rbl2=[];rbs()">🧹 Sil</button></p><div class="gmsg" id="rbo">🦊 Birkaç blok seç!</div></div></div>
+<h2 id="g6">🧭 Ertuğrul Abi ile Görevler</h2><p class="sub">Ertuğrul Abi uzay yolculuğuna çıkıyor. Ona yardım eder misin? 🚀</p>
+<div class="gm"><div class="card"><b>🔦 Ne Değişti?</b><p class="sub">Resimlere bak, sonra yeni gelen hangisi?</p><div class="tiles" id="mi"></div><div style="text-align:center"><button class="big" onclick="miGo()">▶ Göster</button></div><div class="gmsg" id="mimsg">Hazır olunca Göster’e bas!</div></div>
+<div class="card"><b>🔍 Dikkat Dedektifi</b><p class="sub">Farklı olan saklanıyor, bul onu!</p><div class="dgr" id="dg"></div><div class="gmsg" id="dgmsg"></div></div>
+<div class="card"><b>🎒 Çantayı Hazırla</b><p class="sub">Çantaya girenleri aklında tut.</p><div class="slot" id="bkshow" style="font-size:60px">🎒</div><div class="tiles" id="bkopt"></div><div style="text-align:center"><button class="big g" onclick="bkGo()">▶ Başla</button></div><div class="gmsg" id="bkmsg">Başla’ya bas, çantaya ne girecek?</div></div></div>
+<h2>🗺️ Yolculuk Haritası</h2><p class="sub">Bir çocuğun macerası böyle ilerler.</p>
+<div class="flow"><div class="step"><div>🏠</div>Ebeveyn kayıt eder</div><span class="arr">➜</span><div class="step"><div>🦊</div>Arkadaşını seç</div><span class="arr">➜</span><div class="step"><div>🎮</div>Oyna / oku</div><span class="arr">➜</span><div class="step"><div>💡</div>Kodi ipucu verir</div><span class="arr">➜</span><div class="step"><div>⭐</div>Yıldız ve çıkartma</div></div>
+
+<h2>🛡️ Güvenli ve Eğlenceli</h2>
+<div class="feat"><div class="card"><div>👨‍👩‍👧</div><b>Ebeveyn paneli</b><br>Süre, içerik ve ilerleme ebeveynde. Çocuk e-posta yazmaz.</div><div class="card"><div>🙊</div><b>Serbest yorum yok</b><br>Sadece hazır emojiler: 👍 ❤️ 🎉 Kimse yabancıyla yazışmaz.</div><div class="card"><div>🔊</div><b>Sesli okuma</b><br>Okumayı yeni öğrenenler için her metin sesle dinlenir.</div><div class="card"><div>🦊</div><b>Kodi nazik rehber</b><br>Yanlışta “Olsun!” der, küçük ipucu verir, cevabı söylemez.</div></div>
+<h2>🏅 Çıkartmaların</h2><div class="stk"><div class="st" id="s0">🤖</div><div class="st" id="s1">📖</div><div class="st" id="s2">🎉</div><div class="st" id="s3">🌟</div><div class="st" id="s4">🧠</div><div class="st" id="s5">🧩</div><div class="st" id="s6">🎵</div><div class="st" id="s7">🤪</div><div class="st" id="s8">🔦</div><div class="st" id="s9">🔍</div><div class="st" id="s10">🎒</div></div>
+<footer>Kod Macerası Mini • 6-9 yaş • Hata yapmak öğrenmektir 💜</footer></div>
+<div class="mom" id="mom"><svg viewBox="0 0 100 100" width="88" height="88" aria-hidden="true"><clipPath id="mc"><circle cx="50" cy="50" r="48"/></clipPath><circle cx="50" cy="50" r="48" fill="#ffb3c7"/><g clip-path="url(#mc)"><path d="M14 100c0-24 15-32 36-32s36 8 36 32z" fill="#ff8a3d"/><path d="M32 100c0-14 7-24 18-24s18 10 18 24z" fill="#fff"/></g><circle cx="50" cy="15" r="10" fill="#5a3a2a"/><circle cx="50" cy="47" r="24" fill="#f6c9a4"/><path d="M26 48c-4-24 12-34 25-33 15 1 25 11 23 33-5-12-13-17-24-17s-19 5-24 17z" fill="#5a3a2a"/><circle cx="41" cy="51" r="3" fill="#2b2350"/><circle cx="59" cy="51" r="3" fill="#2b2350"/><path d="M40 60q10 8 20 0" stroke="#c2415d" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="35" cy="58" r="4" fill="#ff6f91" opacity=".5"/><circle cx="65" cy="58" r="4" fill="#ff6f91" opacity=".5"/></svg><div class="gb2" id="mq"></div></div>
+<svg class="slp" id="slp" viewBox="0 0 60 30" aria-hidden="true"><ellipse cx="30" cy="20" rx="28" ry="9" fill="#ff8a3d"/><path d="M14 18q16-20 32 0" stroke="#8b5cf6" stroke-width="7" fill="none" stroke-linecap="round"/></svg>
+<div class="guide"><div class="gb" id="gtxt" onclick="gn()">Merhaba! Ben Ertuğrul Abi 👋 Sana yol göstereceğim!</div><button class="av" onclick="gn()" aria-label="Ertuğrul Abi"><svg viewBox="0 0 100 100" width="84" height="84"><use href="#av"/></svg></button></div>
+<script>
+const $=i=>document.getElementById(i);let st=0;
+const P=[["🦊💻","Tilki Kodi bir bilgisayar buldu. Ekranda renkli yazılar vardı."],["🐞❓","Kodi’nin programında küçük bir böcek çıktı! Hata dediğimiz şey buymuş."],["🔍🦊","Kodi vazgeçmedi. Adım adım baktı ve böceği buldu."],["🎉🚀","Program çalıştı! Kodi çok mutlu oldu. Sen de yapabilirsin!"]];let pg=0;
+function addS(n){st+=n;gs(["Aferin! 🎉","Harikasın! ⭐","Süpersin! 💪","Bravo! 👏"][st%4]+" +"+n);$("stars").textContent="⭐ "+st;if(st>=10)$("s3").classList.add("on")}
+function say(t){$("kodi").textContent=t;if(/Olsun|Yaklaştın|Olmadı/.test(t))oops()}
+function go(i){$(i).scrollIntoView()}
+function page(){$("scene").textContent=P[pg][0];$("bt").textContent="Sayfa "+(pg+1)+"/"+P.length;$("btx").textContent=P[pg][1];$("react").innerHTML=["👍","❤️","🎉"].map(e=>`<button onclick="this.classList.add('on');addS(1);$('s2').classList.add('on')">${e}</button>`).join("")}
+function next(){pg=(pg+1)%P.length;if(pg==P.length-1)$("s1").classList.add("on");page()}
+const L=[[[0,0],[3,2],[[1,1],[2,1],[1,3]]],[[0,4],[4,0],[[1,4],[1,3],[3,1],[3,0]]],[[0,0],[4,4],[[1,0],[1,1],[3,3],[2,2]]],[[2,0],[2,4],[[2,1],[2,2],[2,3]]],[[0,0],[4,4],[[1,0],[1,2],[1,3],[3,1],[3,2],[3,4]]]];let S0,T,W,lv=0,prog=[];const N=5;
+function setLv(i){lv=i;S0=L[i][0];T=L[i][1];W=L[i][2];prog=[];show();draw(S0);say("Seviye "+(i+1)+": robotu yıldıza götür!");$("lvs").innerHTML=L.map((_,j)=>`<button class="lvb ${j==i?"on":""}" onclick="setLv(${j})">${j+1}</button>`).join("")}
+const AR={R:"➡️",D:"⬇️",L:"⬅️",U:"⬆️"};
+function draw(p){let h="";for(let y=0;y<N;y++)for(let x=0;x<N;x++){let c="";if(p&&p[0]==x&&p[1]==y)c="🤖";else if(x==T[0]&&y==T[1])c="⭐";else if(W.some(w=>w[0]==x&&w[1]==y))c="🪨";h+=`<div class="cell">${c}</div>`}$("grid").innerHTML=h}
+function show(){$("prog").innerHTML=prog.map(m=>`<button class="blk">${AR[m]}</button>`).join("")}
+function add(m){if(prog.length<10){prog.push(m);show()}}
+function clr(){prog=[];show();draw(S0);say("Yeni plan yapalım! 🌈")}
+function run(){let p=S0.slice(),i=0;draw(p);const D={R:[1,0],L:[-1,0],U:[0,-1],D:[0,1]};
+const t=setInterval(()=>{if(i>=prog.length){clearInterval(t);fin(p);return}const d=D[prog[i++]],x=p[0]+d[0],y=p[1]+d[1];
+if(x<0||y<0||x>=N||y>=N||W.some(w=>w[0]==x&&w[1]==y)){clearInterval(t);say("Ay! Robot bir engele çarptı 🪨 Olsun! Başka yoldan gidelim, tekrar dene.");return}p=[x,y];draw(p)},450)}
+function fin(p){if(p[0]==T[0]&&p[1]==T[1]){say("Yaşasın! Robot yıldızı buldu! 🎉 Harikasın!");addS(5);$("s0").classList.add("on");setTimeout(()=>setLv((lv+1)%L.length),1800)}else say("Robot "+(p[0]<T[0]?"biraz daha sağa":p[0]>T[0]?"biraz sola":"")+(p[1]<T[1]?" ve aşağı ":p[1]>T[1]?" ve yukarı ":"")+" gitmeli. Yaklaştın, bir daha dene! 💪")}
+const m=(i,t)=>{$(i).textContent=t;if(/Olsun|Yaklaştın|Olmadı/.test(t))oops()};
+const MQ=["Olsun yavrum, bir daha dene! 💕","Iskaladım! 😂 Sen de bir daha deneyebilirsin!","Hata öğrenmenin tuzudur, hadi tekrar!","Terlik uçtu ama sevgim yerinde! 💖"];let mt;
+function oops(){const e=$("mom"),s=$("slp");$("mq").textContent=MQ[Math.floor(Math.random()*MQ.length)];e.classList.add("in");s.classList.remove("go");void s.getBoundingClientRect();setTimeout(()=>s.classList.add("go"),350);clearTimeout(mt);mt=setTimeout(()=>e.classList.remove("in"),2900)}
+const PT=[[["🍎","🍌","🍎","🍌","🍎"],"🍌",["🍇","🍌","🍎"]],[["🔴","🔴","🔵","🔴","🔴"],"🔵",["🔴","🔵","🟢"]],[["⭐","🌙","☀️","⭐","🌙"],"☀️",["⭐","☀️","🌙"]],[["🐱","🐶","🐶","🐱","🐶"],"🐶",["🐱","🐶","🐸"]]];let pi=0;
+function pInit(){const q=PT[pi];$("pseq").textContent=q[0].join(" ")+" ❓";$("popt").innerHTML=q[2].map(o=>`<button class="opt" onclick="pick('${o}')">${o}</button>`).join("")}
+function pick(o){const q=PT[pi];if(o==q[1]){m("pmsg","Doğru! Süpersin! 🎉");addS(2);pi++;if(pi>=PT.length){pi=0;$("s5").classList.add("on");m("pmsg","Tüm desenleri buldun! 🌟 Baştan başlıyoruz.")}setTimeout(pInit,900)}else m("pmsg","Olsun! Tekrar bak, desen tekrar ediyor. 🔍")}
+let cards=[],open=[],lock=false,done=0;
+function memStart(){const e=["🐶","🐱","🦁","🐸"];cards=[...e,...e].sort(()=>Math.random()-.5).map(v=>({v,s:0}));open=[];done=0;lock=false;memDraw();m("mmsg","Aynı resimleri bul!")}
+function memDraw(){$("mem").innerHTML=cards.map((c,i)=>`<button class="mc ${c.s?"up":""}" onclick="flip(${i})">${c.s?c.v:"❔"}</button>`).join("")}
+function flip(i){if(lock||cards[i].s)return;cards[i].s=1;open.push(i);memDraw();if(open.length==2){lock=true;const[a,b]=open;if(cards[a].v==cards[b].v){done++;addS(2);open=[];lock=false;m("mmsg","Eşleşti! 🎉");if(done==4){m("mmsg","Hepsini buldun! 🧠⭐");$("s4").classList.add("on")}}else{m("mmsg","Olmadı, tekrar dene! 🙈");setTimeout(()=>{cards[a].s=0;cards[b].s=0;open=[];lock=false;memDraw()},900)}}}
+const SC=["🔴","🟢","🔵","🟡"];let seq=[],pos=0,busy=false;
+function flash(i){const b=$("sb"+i);b.classList.add("lit");setTimeout(()=>b.classList.remove("lit"),400)}
+function splay(){busy=true;m("smsg","Kodi diyor ki: izle! 👀");seq.forEach((c,i)=>setTimeout(()=>flash(c),i*700+500));setTimeout(()=>{busy=false;pos=0;m("smsg","Şimdi sıra sende! 👆")},seq.length*700+600)}
+function sstart(){seq=[Math.floor(Math.random()*4)];splay()}
+function press(c){if(busy||!seq.length)return;flash(c);if(c!=seq[pos]){m("smsg","Olsun! Tekrar deneyelim, Başla’ya bas. 💪");seq=[];return}pos++;if(pos==seq.length){addS(2);if(seq.length>=4){m("smsg","4 renk! Harikasın! 🎵");$("s6").classList.add("on");seq=[];return}seq.push(Math.floor(Math.random()*4));busy=true;setTimeout(splay,900)}}
+$("simon").innerHTML=SC.map((c,i)=>`<button class="sb" id="sb${i}" onclick="press(${i})">${c}</button>`).join("");
+const WH=["🐘 Fil","🐔 Tavuk","🦖 Dinozor","🧦 Çorap","🍕 Pizza","🐙 Ahtapot"],DO=["bisiklet sürdü","uzaya uçtu","şarkı söyledi","uyku tulumunda dans etti","dişlerini fırçaladı","kod yazdı"],WR=["bulutların üstünde","muzun içinde","okul çantasında","ay’da","havuzda","pastanın tepesinde"];const pk=a=>a[Math.floor(Math.random()*a.length)];
+function spin(){let n=0;const t=setInterval(()=>{$("sl").textContent=pk(WH)+", "+pk(WR)+" "+pk(DO)+".";if(++n>8){clearInterval(t);addS(1);$("s7").classList.add("on")}},120)}
+const JK=["Tavuk neden yolun karşısına geçmiş? Wi-Fi çekiyormuş! 📶🐔","Robot neden üşümüş? Çünkü penceresi (Windows) açıkmış! 🪟🤖","Fil neden bilgisayardan korkmuş? Çünkü içinde fare varmış! 🐭🐘","Çorap neden hiç kaybolmaz? Çünkü yerini kaydetmiş! 🧦💾"];let ji=0,lq=new Set();
+function nj(){ji=(ji+1)%JK.length;$("jk").textContent=JK[ji]}
+function lol(){if(!lq.has(ji)){lq.add(ji);addS(1)}$("jk").textContent=JK[ji]+" 😂😂😂"}
+$("jk").textContent=JK[0];
+const RB=["🐸 zıpladı","🎤 şarkı söyledi","💃 dans etti","🍌 muz yedi"];let rbl2=[];
+function rbs(){$("rbl").textContent="Sıran: "+(rbl2.length?rbl2.join(" ➜ "):"boş")}
+$("rbb").innerHTML=RB.map(b=>`<button class="blk" onclick="if(rbl2.length<6){rbl2.push('${b}');rbs()}">${b.split(" ")[0]}</button>`).join("");
+function rbrun(){if(!rbl2.length){m("rbo","Önce birkaç blok seç!");return}m("rbo","🤖 Robot "+rbl2.join(", sonra ")+"! 🎉");addS(1);$("s7").classList.add("on")}
+const GT=["Merhaba! Ben Ertuğrul Abi 👋 Sana yol göstereceğim!","Takılırsan sakin ol. Hata yapmak öğrenmektir 💜","Robot Adası’nda önce yolu aklında çiz, sonra blokları seç!","Resimlere dikkatle bak, gözlerin süper güçlü! 🦸","Yıldız topla, çıkartma rafını doldur! ⭐"];let gi=0;
+function gs(t){$("gtxt").textContent=t}function gn(){gi=(gi+1)%GT.length;gs(GT[gi])}
+const shf=a=>a.slice().sort(()=>Math.random()-.5);const PL=["🍎","🍌","🐶","🐱","🚀","🎈","🧸","🍕","🦋","🌈","⚽","🍩"];
+let miN=3,miSet=[],miNew="",miB=false;
+function miGo(){if(miB)return;miB=true;const p=shf(PL);miSet=p.slice(0,miN);miNew=p[miN];$("mi").innerHTML=miSet.map(e=>`<div class="tile">${e}</div>`).join("");m("mimsg","Hepsine dikkatle bak! 👀");setTimeout(()=>{$("mi").innerHTML="<div class=\"tile\">🙈</div>"},3000);setTimeout(()=>{$("mi").innerHTML=shf(miSet.concat(miNew)).map(e=>`<button class="tilebtn" onclick="miPick('${e}')">${e}</button>`).join("");m("mimsg","Hangisi az önce yoktu? 🤔");miB=false},4200)}
+function miPick(e){if(e==miNew){addS(2);miN=Math.min(6,miN+1);m("mimsg","Bildin! Süpersin! 🎉 Yeni tur için Göster’e bas.");$("s8").classList.add("on")}else m("mimsg","Olsun! Bir daha deneyelim 🔦");$("mi").innerHTML=""}
+let dgN=3;const DP=[["🍎","🍅"],["🐶","🐱"],["🔴","🟠"],["😀","🙂"]];
+function dgGo(){const p=DP[Math.floor(Math.random()*4)],n=dgN*dgN,o=Math.floor(Math.random()*n);$("dg").style.gridTemplateColumns=`repeat(${dgN},1fr)`;$("dg").innerHTML=Array.from({length:n},(_,i)=>`<button onclick="dgPick(${i==o})">${i==o?p[1]:p[0]}</button>`).join("");m("dgmsg","Farklı olanı bul! 🔍")}
+function dgPick(ok){if(ok){addS(2);dgN=Math.min(5,dgN+1);m("dgmsg","Buldun! Gözlerin çok keskin! 🦅");$("s9").classList.add("on");setTimeout(dgGo,900)}else m("dgmsg","Olsun! Yakından bak, farklı biri saklanıyor. 🔎")}
+let bk=3,bkItems=[],bkSel=new Set(),bkB=false;
+function bkGo(){if(bkB)return;bkB=true;bkSel=new Set();const p=shf(PL);bkItems=p.slice(0,bk);$("bkopt").innerHTML="";m("bkmsg","Çantaya girenlere bak! 🎒");bkItems.forEach((e,i)=>setTimeout(()=>{$("bkshow").textContent=e},i*1200+300));setTimeout(()=>{$("bkshow").textContent="🎒";$("bkopt").innerHTML=shf(bkItems.concat(p.slice(bk,8))).map(e=>`<button class="tilebtn" onclick="bkTog(this,'${e}')">${e}</button>`).join("")+`<div style="width:100%;text-align:center"><button class="big g" onclick="bkOk()">✔ Tamam</button></div>`;m("bkmsg","Çantaya hangileri girdi? Dokun, sonra Tamam! 👆");bkB=false},bk*1200+500)}
+function bkTog(b,e){if(bkSel.has(e)){bkSel.delete(e);b.classList.remove("sel")}else{bkSel.add(e);b.classList.add("sel")}}
+function bkOk(){const ok=bkSel.size==bkItems.length&&bkItems.every(e=>bkSel.has(e));if(ok){addS(3);bk=Math.min(6,bk+1);m("bkmsg","Hepsini hatırladın! 🌟 Yeni tur için Başla.");$("s10").classList.add("on")}else m("bkmsg","Olsun! Tekrar deneyelim, bu sefer sırayla dikkat et. 🎒");$("bkopt").innerHTML=""}
+page();setLv(0);pInit();memStart();dgGo();
+</script></body></html>

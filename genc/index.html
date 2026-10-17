@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kod Macerası — Kodla, Paylaş, Seviye Atla!</title>
+<style>
+:root{--bg:#fff8ee;--card:#fff;--ink:#231942;--mute:#6b6486;--p:#7c3aed;--a:#ff7a59;--g:#22c55e;--y:#ffc53d;--line:#eadfcb;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150f2b;--card:#221a42;--ink:#f4efff;--mute:#a89fca;--line:#362b63}}
+:root[data-theme="dark"]{--bg:#150f2b;--card:#221a42;--ink:#f4efff;--mute:#a89fca;--line:#362b63}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:1050px;margin:auto;padding:0 16px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:2px solid var(--line);z-index:5}
+nav .w{display:flex;align-items:center;gap:10px;padding:10px 16px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:20px}.logo b{color:var(--p)}
+nav a{color:var(--mute);text-decoration:none;font-weight:600;font-size:14px}
+.sp{flex:1}.xp{background:var(--y);color:#231942;border-radius:99px;padding:4px 12px;font-weight:800;font-size:14px}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--p);color:#fff;border:0;border-radius:14px;padding:10px 18px;font-weight:800;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.btn.o{background:var(--a)}.btn:active{transform:translateY(3px);box-shadow:none}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:center;padding:34px 0}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.08;margin:0 0 12px}
+h1 span{background:linear-gradient(90deg,var(--p),var(--a));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mute);font-size:18px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.stats div{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:8px 14px;font-weight:700}
+h2{font-size:28px;margin:44px 0 6px}.sub{color:var(--mute);margin:0 0 16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{background:var(--card);border:2px solid var(--line);color:var(--ink);border-radius:99px;padding:6px 14px;font-weight:700}
+.chip.on{background:var(--p);color:#fff;border-color:var(--p)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .2s}
+.card:hover{transform:translateY(-4px) rotate(-.6deg)}
+.cov{height:120px;display:grid;place-items:center;font-size:56px}
+.cb{padding:14px}.cb h3{margin:4px 0;font-size:18px}.cb small{color:var(--mute)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:8px;padding:2px 8px;background:var(--line)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.like{background:none;border:2px solid var(--line);border-radius:99px;padding:4px 12px;color:var(--ink);font-weight:700}
+.like.on{background:#ff4d6d;color:#fff;border-color:#ff4d6d}
+.panel{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:18px}
+.ai{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+textarea{width:100%;height:150px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:14px ui-monospace,Menlo,monospace;padding:10px;resize:vertical}
+.chat{min-height:150px;max-height:300px;overflow:auto;display:flex;flex-direction:column;gap:8px}
+.msg{padding:10px 12px;border-radius:14px;background:var(--bg);border:2px solid var(--line)}
+.msg.k{border-color:var(--p)}
+.ex{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.ex .chip{font-size:12px;padding:3px 10px}
+.flow{overflow-x:auto}.flow svg{min-width:880px;width:100%}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.feat .panel b{font-size:17px}.feat .panel div{font-size:34px}
+.badges{display:flex;gap:10px;flex-wrap:wrap}.bd{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:28px;background:var(--line);filter:grayscale(1);opacity:.5}.bd.on{filter:none;opacity:1;background:var(--y)}
+footer{margin:50px 0 30px;text-align:center;color:var(--mute)}
+@media(max-width:720px){.hero,.ai{grid-template-columns:1fr}nav a{display:none}}
+</style></head><body>
+<nav><div class="w"><span class="logo">🚀 Kod<b>Macerası</b></span><a href="#hikayeler">Hikâyeler</a><a href="#kodi">Kodi AI</a><a href="#akis">Akış</a><a href="#fikirler">Yeni fikirler</a><span class="sp"></span><span class="xp" id="xp">⭐ 0 XP</span></div></nav>
+<div class="w">
+<section class="hero"><div>
+<h1>Kodla, paylaş, <span>seviye atla!</span></h1>
+<p>Yazılım yolculuğunu hikâyeye çevir, projelerini sergile, takıldığında yapay zekâ mentorun Kodi yanında olsun. Hata yapmak burada oyunun parçası! 🎮</p>
+<div class="stats"><div>📚 1.2K hikâye</div><div>🧑‍💻 8K genç</div><div>🔥 <span id="streak">3</span> gün seri</div></div>
+<p><button class="btn" onclick="go('hikayeler')">Hikâyeleri keşfet</button> <button class="btn o" onclick="go('kodi')">Kodi’ye kod göster</button></p></div>
+<svg viewBox="0 0 300 260" role="img" aria-label="Roketle uçan kodlayıcı"><rect x="10" y="20" width="280" height="220" rx="28" fill="#7c3aed"/><circle cx="60" cy="60" r="3" fill="#fff"/><circle cx="250" cy="90" r="4" fill="#ffc53d"/><circle cx="220" cy="40" r="2" fill="#fff"/><rect x="50" y="130" width="140" height="84" rx="12" fill="#150f2b"/><text x="62" y="158" fill="#22c55e" font-family="monospace" font-size="14">print("Merhaba!")</text><text x="62" y="182" fill="#ffc53d" font-family="monospace" font-size="14">level += 1 ✨</text><text x="190" y="120" font-size="90">🚀</text><text x="30" y="110" font-size="36">🐞</text></svg>
+</section>
+
+<h2 id="hikayeler">📖 Hikâye Akışı</h2><p class="sub">Kategori seç, beğen, XP topla.</p>
+<div class="chips" id="chips"></div><div class="grid" id="grid"></div>
+
+<h2 id="kodi">🤖 Kodi — Yapay Zekâ Mentorun</h2>
+<p class="sub">Kodunu yapıştır. Kodi suçlamaz, ipucu verir. (Demo: tarayıcıda çalışan kural tabanlı rehber; gerçekte Claude API’ye bağlanır.)</p>
+<div class="ai"><div class="panel"><b>✍️ Kodun</b>
+<div class="ex"><button class="chip" onclick="ex(0)">Python hatası</button><button class="chip" onclick="ex(1)">Eksik parantez</button><button class="chip" onclick="ex(2)">if içinde =</button><button class="chip" onclick="ex(3)">Temiz kod</button></div>
+<textarea id="code" spellcheck="false">prnt("Merhaba dünya")</textarea><p><button class="btn" onclick="ask()">Kodi’ye sor 🔍</button></p></div>
+<div class="panel"><b>🤖 Kodi diyor ki:</b><div class="chat" id="chat"><div class="msg k">Selam! Ben Kodi 👋 Hata bulmak benim işim, utanmak senin değil. Kodunu gönder!</div></div></div></div>
+
+<h2 id="akis">🗺️ Kullanıcı Akış Şeması</h2><p class="sub">Bir gencin platformdaki yolculuğu.</p>
+<div class="panel flow"><svg viewBox="0 0 900 250" font-family="system-ui" font-size="13" text-anchor="middle" fill="none">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#7c3aed"/></marker></defs>
+<g stroke="#7c3aed" stroke-width="2.5" marker-end="url(#ar)"><path d="M120 60H165"/><path d="M285 60H330"/><path d="M450 60H495"/><path d="M615 60H660"/><path d="M780 60V105"/><path d="M720 150H675"/><path d="M555 150H500"/><path d="M380 150H330"/><path d="M555 100V105" stroke="none"/><path d="M540 105V100" stroke="none"/></g>
+<g fill="#fff8ee" stroke="#7c3aed" stroke-width="2"><rect x="10" y="30" width="110" height="60" rx="14"/><rect x="170" y="30" width="115" height="60" rx="14"/><rect x="335" y="30" width="115" height="60" rx="14"/><rect x="500" y="30" width="115" height="60" rx="14"/><rect x="665" y="30" width="230" height="60" rx="14" fill="#ffe8d6"/><rect x="725" y="120" width="170" height="60" rx="14"/><rect x="560" y="120" width="165" height="60" rx="14" fill="#e6f9ee"/><rect x="390" y="120" width="165" height="60" rx="14"/><rect x="215" y="120" width="170" height="60" rx="14" fill="#fff3c4"/></g>
+<g fill="#231942" font-weight="700"><text x="65" y="57">👀 Ziyaretçi</text><text x="65" y="75" font-weight="400">hikâye okur</text><text x="227" y="57">📝 Kayıt</text><text x="227" y="75" font-weight="400">e-posta doğrulama</text><text x="392" y="57">🎯 Mini test</text><text x="392" y="75" font-weight="400">AI seviye belirler</text><text x="557" y="57">✍️ Hikâye yaz</text><text x="557" y="75" font-weight="400">taslak kaydet</text><text x="780" y="57">🤖 Kodi kontrolü</text><text x="780" y="75" font-weight="400">hata → ipucu → düzelt</text><text x="810" y="147">🚀 Yayınla</text><text x="810" y="165" font-weight="400">herkese açık</text><text x="642" y="147">❤️ Beğeni / 💬 Yorum</text><text x="642" y="165" font-weight="400">topluluk tepkisi</text><text x="472" y="147">⭐ XP + 🏅 Rozet</text><text x="472" y="165" font-weight="400">seri devam eder</text><text x="300" y="147">🔁 Yeni macera</text><text x="300" y="165" font-weight="400">yeni seviye açılır</text></g>
+<rect x="170" y="200" width="560" height="36" rx="12" fill="#ff4d6d" opacity=".12"/><text x="450" y="223" fill="#ff4d6d" font-weight="700">🛡️ Uygunsuz içerik: Bildir → Moderatör → Gizle / Onayla (denetim kaydı)</text></svg></div>
+
+<h2 id="fikirler">💡 Eklediğim Yeni Fikirler</h2><p class="sub">Şartnameye ek, gençlere özel.</p>
+<div class="feat">
+<div class="panel"><div>🎮</div><b>XP, seviye ve seri</b><br>Yazdıkça, beğendikçe puan. Her gün girince seri artar.</div>
+<div class="panel"><div>🤖</div><b>Kodi hata rehberi</b><br>Yayından önce kod ve metni tarar; cevabı vermez, ipucu verir.</div>
+<div class="panel"><div>🎯</div><b>Günlük görev</b><br>“Bugün bir hata hikâyesi paylaş” gibi küçük hedefler.</div>
+<div class="panel"><div>🧪</div><b>Çalışan mini editör</b><br>Hikâyenin içinde kodu çalıştırıp denemek.</div>
+<div class="panel"><div>🤝</div><b>Mentor eşleşme</b><br>Aynı dili öğrenenleri ve ileri seviye gençleri buluşturur.</div>
+<div class="panel"><div>🔒</div><b>Gençlere güvenli alan</b><br>Kişisel bilgi uyarısı, nazik yorum filtresi, kolay bildirme.</div></div>
+<p><b>🏅 Rozetlerin</b> (beğen ve Kodi’ye sor, aç!)</p>
+<div class="badges"><div class="bd" id="b0" title="İlk beğeni">❤️</div><div class="bd" id="b1" title="İlk Kodi sorusu">🤖</div><div class="bd" id="b2" title="Hata avcısı">🐞</div><div class="bd" id="b3" title="50 XP">🏆</div></div>
+<footer>Kod Macerası • Tasarım demosu • Her hata bir ipucudur 💜</footer></div>
+<script>
+const S=[["Sıfırdan ilk print’im","Python","🐍","#c7f0d8","Ertuğrul","Hiç kod bilmiyordum, ilk gün ekrana yazı çıkardım!",42],["Hata mesajıyla barıştım","Web","🌐","#ffd9c7","Elif","Kırmızı yazılar korkutucu değilmiş.",31],["Oyun yapmaya çalışırken","Oyun","🎮","#d9d2ff","Can","Üç gecede kendi oyunum çıktı.",57],["Telefon uygulamam","Mobil","📱","#ffe9a8","Aylin","İlk uygulamam çöktü, sonra düzeldi.",24],["Robot kolu kodladım","Robotik","🤖","#c9e8ff","Deniz","Arduino ile ilk hareket.",19],["Yapay zekâ ile ders","Yapay Zekâ","🧠","#ffd0e6","Mert","Bir modeli eğitirken öğrendiklerim.",36]];
+const C=["Hepsi",...new Set(S.map(s=>s[1]))];let cat="Hepsi",xp=0,liked=new Set(),asked=0,found=0;
+const $=id=>document.getElementById(id);
+function addXp(n){xp+=n;$("xp").textContent="⭐ "+xp+" XP";if(xp>=50)$("b3").classList.add("on")}
+function render(){$("chips").innerHTML=C.map(c=>`<button class="chip ${c==cat?"on":""}" onclick="cat='${c}';render()">${c}</button>`).join("");
+$("grid").innerHTML=S.filter(s=>cat=="Hepsi"||s[1]==cat).map((s,i)=>{const k=S.indexOf(s),l=liked.has(k);return `<div class="card"><div class="cov" style="background:${s[3]}">${s[2]}</div><div class="cb"><span class="tag">${s[1]}</span><h3>${s[0]}</h3><small>${s[5]}</small><div class="row"><small>✍️ ${s[4]}</small><button class="like ${l?"on":""}" onclick="lk(${k})">${l?"❤️":"🤍"} ${s[6]+(l?1:0)}</button></div></div></div>`}).join("")}
+function lk(k){if(liked.has(k))liked.delete(k);else{liked.add(k);addXp(5);$("b0").classList.add("on")}render()}
+function go(id){$(id).scrollIntoView()}
+const EX=['prnt("Merhaba dünya")','print("Merhaba dünya"','if (puan = 10) {\n  console.log("Tam puan")\n}','print("Merhaba dünya")'];
+function ex(i){$("code").value=EX[i]}
+function say(t,k){const d=document.createElement("div");d.className="msg"+(k?" k":"");d.innerHTML=t;$("chat").appendChild(d);$("chat").scrollTop=1e9}
+function ask(){const c=$("code").value;say("<small>🧑‍💻 "+c.replace(/</g,"&lt;").slice(0,80)+"</small>");const r=[];
+if(/\b(prnt|pritn|Print|prin)\(/.test(c))r.push("🐞 <b>Yazım hatası:</b> <code>print</code> komutunu yanlış yazmışsın. Harflere bir daha bak, çok yaklaştın!");
+const o=(c.match(/\(/g)||[]).length,cl=(c.match(/\)/g)||[]).length;if(o!=cl)r.push("🧩 <b>Parantez eşleşmiyor:</b> "+o+" tane açtın, "+cl+" tane kapattın. Her ( için bir ) lazım.");
+if(/if\s*\([^=!<>]*[^=!<>]=[^=]/.test(c))r.push("⚖️ <b>if içinde tek = var:</b> tek = değer atar, karşılaştırmak için == ya da === kullan.");
+if(/console\.log\([^)]*\)\s*\n/.test(c)&&!/;/.test(c))r.push("💡 <b>İpucu:</b> satır sonuna ; koymak güzel bir alışkanlık.");
+if(!r.length){r.push("🎉 <b>Harika!</b> Burada hata görmedim. İstersen kodu bir cümleyle açıkla, hikâyene ekleyelim.");addXp(5)}else{found++;addXp(10);if(found>=1)$("b2").classList.add("on")}
+asked++;$("b1").classList.add("on");addXp(5);setTimeout(()=>say(r.join("<br><br>")+"<br><br>Cevabı sana vermiyorum; düzeltip tekrar dene, sen yaparsın! 💪",1),300)}
+render();
+</script></body></html>
